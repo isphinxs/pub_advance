@@ -7,6 +7,7 @@ gem "shotgun"
 gem "require_all"
 gem "sinatra-activerecord", require: "sinatra/activerecord"
 gem "bcrypt"
+gem "dotenv"
 
 group :development do
     gem "sqlite3"
