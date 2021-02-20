@@ -69,7 +69,12 @@ class ApplicationController < Sinatra::Base
     end
 
     get "/logout" do
-        
+        if is_logged_in?(session)
+            session.clear
+            redirect "/login"
+        else 
+            redirect "/"
+        end
     end
 
     # Routes for testing
