@@ -22,7 +22,11 @@ class ApplicationController < Sinatra::Base
     end
 
     get "/signup" do
-        erb :signup
+        if is_logged_in?(session)
+            redirect "/already-logged-in"
+        else
+            erb :signup
+        end
     end
 
     post "/signup" do
@@ -30,25 +34,54 @@ class ApplicationController < Sinatra::Base
         username = params[:username]
         password = params[:password]
         if is_logged_in?(session)
-            redirect "/"
+            redirect "/already-logged-in"
         elsif name.blank? || username.blank? || password.blank?
             redirect "/signup"
         else
             author = Author.new(params)
-            redirect "/success"
+            if author.save
+                session[:author_id] = author.id
+                redirect "/success-signup"
+            else
+                # handle failure
+            end
         end
-    end
-    
-    get "/success" do
-        "Successfully signed up"
     end
 
     get "/login" do
-        
+        if is_logged_in?(session)
+            redirect "/already-logged-in"
+        else
+            erb :login
+        end
+    end
+
+    post "/login" do
+        author = Author.find_by(username: params[:username])
+        if is_logged_in?(session)
+            redirect "/already-logged-in"
+        elsif author && author.authenticate(params[:password])
+            binding.pry
+            session[:author_id] = author.id
+            redirect "/success-login"
+        end
     end
 
     get "/logout" do
         
+    end
+
+    # Routes for testing
+    get "/success-signup" do
+        "Successfully signed up"
+    end
+
+    get "/success-login" do
+        "Successfully logged in"
+    end
+
+    get "/already-logged-in" do
+        "You are already logged in"
     end
 
     helpers Helpers
