@@ -12,6 +12,7 @@ group :development do
     gem "sqlite3"
     gem "pry"
     gem "tux"
+    gem "faker"
 end
 
 group :production do
