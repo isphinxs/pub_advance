@@ -22,9 +22,27 @@ class ApplicationController < Sinatra::Base
     end
 
     get "/signup" do
-    
+        erb :signup
+    end
+
+    post "/signup" do
+        name = params[:name]
+        username = params[:username]
+        password = params[:password]
+        if is_logged_in?(session)
+            redirect "/"
+        elsif name.blank? || username.blank? || password.blank?
+            redirect "/signup"
+        else
+            author = Author.new(params)
+            redirect "/success"
+        end
     end
     
+    get "/success" do
+        "Successfully signed up"
+    end
+
     get "/login" do
         
     end
