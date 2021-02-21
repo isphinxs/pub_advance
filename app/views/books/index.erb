@@ -4,3 +4,6 @@
     <li><a href="/books/<%= book.id %>"><%= book.name %></a> (<%= book.year_published %>) - $<%= book.advance %></li>
     <% end %>
 </ul>
+<form action="/books/new" method="get">
+    <input type="submit" id="new_book" value="Add a New Book">
+</form>
