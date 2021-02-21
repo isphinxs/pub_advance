@@ -26,7 +26,7 @@ class ApplicationController < Sinatra::Base
 
     get "/signup" do
         if is_logged_in?(session)
-            redirect "/already-logged-in"
+            redirect "/books", flash[:message] = "You are already logged in."
         else
             erb :signup
         end
@@ -37,7 +37,7 @@ class ApplicationController < Sinatra::Base
         username = params[:username]
         password = params[:password]
         if is_logged_in?(session)
-            redirect "/already-logged-in"
+            redirect "/books", flash[:message] = "You are already logged in."
         elsif name.blank? || username.blank? || password.blank?
             redirect "/signup", flash[:message] = "Please fill out all requested fields to sign up."
         else
@@ -53,7 +53,7 @@ class ApplicationController < Sinatra::Base
 
     get "/login" do
         if is_logged_in?(session)
-            redirect "/already-logged-in"
+            redirect "/books", flash[:message] = "You are already logged in."
         else
             erb :login
         end
@@ -62,33 +62,20 @@ class ApplicationController < Sinatra::Base
     post "/login" do
         author = Author.find_by(username: params[:username])
         if is_logged_in?(session)
-            redirect "/already-logged-in"
+            redirect "/books", flash[:message] = "You are already logged in."
         elsif author && author.authenticate(params[:password])
             session[:author_id] = author.id
-            redirect "/success-login"
+            redirect "/books", flash[:message] = "Welcome, #{author.name}!"
         end
     end
 
     get "/logout" do
         if is_logged_in?(session)
             session.clear
-            redirect "/login"
+            redirect "/", flash[:message] = "You have successfully logged out."
         else 
-            redirect "/"
+            redirect "/signup"
         end
-    end
-
-    # Routes for testing
-    get "/success-signup" do
-        "Successfully signed up"
-    end
-
-    get "/success-login" do
-        "Successfully logged in"
-    end
-
-    get "/already-logged-in" do
-        "You are already logged in"
     end
 
     helpers Helpers
