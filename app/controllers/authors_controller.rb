@@ -1,6 +1,11 @@
 class AuthorsController < ApplicationController
     get "/authors" do
-        
+        if is_logged_in?(session) 
+            @authors = Author.all
+            erb :"/authors/index"
+        else
+            redirect "/login"
+        end
     end
 
     get "/authors/:id" do
