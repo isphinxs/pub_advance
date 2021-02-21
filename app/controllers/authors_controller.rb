@@ -10,9 +10,8 @@ class AuthorsController < ApplicationController
 
     get "/authors/:slug" do
         if is_logged_in?(session)
-            # @author = Author.find(params[:id])
             @author = Author.find_by_slug(params[:slug])
-            @logged_in = @author == current_author ? true : false
+            @owns_author = @author == current_author ? true : false
             @books = @author.books.all
             erb :"authors/show"
         else

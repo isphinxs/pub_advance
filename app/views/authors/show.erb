@@ -8,7 +8,7 @@
 <% else %>
     <p>No books listed</p>
 <% end %>
-<% if @logged_in %>
+<% if @owns_author %>
     <form action="/authors/<%= @author.slug %>/edit" method="GET">
         <input type="submit" id="edit" value="Edit Account">
     </form>
