@@ -1,6 +1,7 @@
 <h2>Edit Your Book</h2>
 <p>Author: <%= @author.name %></p>
-<form action="/books" method="POST">
+<form action="/books/<%= @book.id %>" method="POST">
+    <input type="hidden" id="hidden" name="_method" value="patch">
     <label for="title">Title: </label>
     <input type="text" id="title" name="title" value="<%= @book.name %>">
     <label for="year_published">Year published: </label>

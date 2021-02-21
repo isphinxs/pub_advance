@@ -50,8 +50,7 @@ class BooksController < ApplicationController
 
     get "/books/:id/edit" do
         if is_logged_in?(session)
-            id = params[:id]
-            @book = Book.find(id)
+            @book = Book.find(params[:id])
             if @book.author_id = current_author.id
                 @author = current_author
                 erb :"books/edit"
@@ -64,7 +63,27 @@ class BooksController < ApplicationController
     end
 
     patch "/books/:id" do
-        
+        if is_logged_in?(session)
+            id = params[:id]
+            book = Book.find(id)
+            title = params[:title]
+            year_published = params[:year_published]
+            advance = params[:advance]
+            if title.blank? || year_published.blank? || advance.blank?
+                redirect "/books/#{id}/edit" # flash, or update to a page that says you've made a mistake?
+            else
+                book.name = title
+                book.year_published = year_published
+                book.advance = advance
+                if book.save
+                    redirect "/books/#{id}"
+                else
+                    redirect "/books/#{id}/edit" # flash, or update to a page that says there's been a mistake?
+                end
+            end
+        else
+            redirect "/login"
+        end
     end
 
     delete "/books/:id" do
