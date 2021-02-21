@@ -53,7 +53,20 @@ class AuthorsController < ApplicationController
         end 
     end
 
-    delete "/authors/:id" do
-        
+    delete "/authors/:slug" do
+        if is_logged_in?(session)
+            slug = params[:slug]
+            author = Author.find_by_slug(slug)
+            if author == current_author
+                # what to do with author's books?
+                author.destroy
+                session.clear
+                redirect "/", flash[:message] = "You have successfully deleted your account"
+            else
+                redirect "/books/#{slug}" # flash, or update to a page that says you're not permitted to delete?
+            end
+        else
+            redirect "/login"
+        end
     end
 end
