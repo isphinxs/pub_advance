@@ -41,7 +41,7 @@ class BooksController < ApplicationController
                     slug = book.slug
                     redirect "/books/#{slug}"
                 else
-                    redirect "/books/new" # flash, or update to a page with the data already filled out?
+                    redirect "/books/new", flash[:message] = "There was an error creating a new book. Please try again."
                 end
             end
         else 
@@ -79,7 +79,7 @@ class BooksController < ApplicationController
                 if book.save
                     redirect "/books/#{slug}"
                 else
-                    redirect "/books/#{slug}/edit" # flash, or update to a page that says there's been a mistake?
+                    redirect "/books/#{slug}/edit", flash[:message] = "There was an error updating your book. Please try again."
                 end
             end
         else
