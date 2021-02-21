@@ -1,6 +1,6 @@
 <h2><%= @book.name %></h2>
 <% if @author %>
-<p>By <%= @author.name %></p>
+<p>By <a href="/authors/<%= @author.id %>"><%= @author.name %></a></p>
 <% else %>
 <p>Author unknown</p>
 <% end %>

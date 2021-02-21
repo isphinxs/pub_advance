@@ -9,7 +9,14 @@ class AuthorsController < ApplicationController
     end
 
     get "/authors/:id" do
-        
+        if is_logged_in?(session)
+            @author = Author.find(params[:id])
+            @logged_in = @author == current_author ? true : false
+            @books = @author.books.all
+            erb :"authors/show"
+        else
+            redirect "/login"
+        end
     end
 
     get "/authors/:id/edit" do

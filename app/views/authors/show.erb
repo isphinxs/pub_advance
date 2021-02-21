@@ -1,0 +1,19 @@
+<h2><%= @author.name %></h2>
+<% if @books.length > 0 %>
+    <ul>
+    <% @books.each do |book| %>
+        <li><a href="/books/<%= book.id %>"><%= book.name %></a> (<% book.year_published %>)</li>
+    <% end %>
+    </ul>
+<% else %>
+    <p>No books listed</p>
+<% end %>
+<% if @logged_in %>
+    <form action="/authors/<%= @author.id %>/edit" method="GET">
+        <input type="submit" id="edit" value="Edit Account">
+    </form>
+    <form action="/authors/<%= @author.id %>" method="POST">
+        <input type="hidden" id="hidden" name="_method" value="DELETE">
+        <input type="submit" id="edit" value="Delete Account">
+    </form>
+<% end %>
