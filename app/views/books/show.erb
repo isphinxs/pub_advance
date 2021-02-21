@@ -6,10 +6,12 @@
 <% end %>
 <p>Published in <%= @book.year_published %></p>
 <p>Advance: $<%= @book.advance %></p>
-<form action="/books/<%= @book.slug %>/edit" method="GET">
-    <input type="submit" id="edit" value="Edit Book">
-</form>
-<form action="/books/<%= @book.slug %>" method="POST">
-    <input type="hidden" id="hidden" name="_method" value="DELETE">
-    <input type="submit" id="edit" value="Delete Book">
-</form>
+<% if @owns_book %>
+    <form action="/books/<%= @book.slug %>/edit" method="GET">
+        <input type="submit" id="edit" value="Edit Book">
+    </form>
+    <form action="/books/<%= @book.slug %>" method="POST">
+        <input type="hidden" id="hidden" name="_method" value="DELETE">
+        <input type="submit" id="edit" value="Delete Book">
+    </form>
+<% end %>

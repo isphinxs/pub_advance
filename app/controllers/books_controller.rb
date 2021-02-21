@@ -21,6 +21,7 @@ class BooksController < ApplicationController
         if is_logged_in?(session)
             @book = Book.find_by_slug(params[:slug])
             @author = @book.author
+            @owns_book = @author == current_author ? true : false
             erb :"books/show"
         else
             redirect "/login"
