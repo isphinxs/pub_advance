@@ -14,6 +14,11 @@
                 <li><a href="/books">Books</a></li>
             </ul>
         </div>
+        <% if flash[:message] %>
+            <div>
+                <%= flash[:message] %>
+            <div>
+        <% end %>
         <%= yield %>
         <footer>
             <p>Copyright 2021 Samantha Ostrowski</p>

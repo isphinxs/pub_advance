@@ -8,6 +8,7 @@ gem "require_all"
 gem "sinatra-activerecord", require: "sinatra/activerecord"
 gem "bcrypt"
 gem "dotenv"
+gem "sinatra-flash"
 
 group :development do
     gem "sqlite3"

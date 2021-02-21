@@ -1,5 +1,6 @@
 require "./config/environment"
 require "sinatra/base"
+require "sinatra/flash"
 
 module Helpers
     def is_logged_in?(session)
@@ -16,6 +17,7 @@ class ApplicationController < Sinatra::Base
         enable :sessions
         set :session_secret, ENV["SESSION_SECRET"]
         set :views, "app/views"
+        register Sinatra::Flash
     end
 
     get "/" do
@@ -44,7 +46,9 @@ class ApplicationController < Sinatra::Base
                 session[:author_id] = author.id
                 redirect "/success-signup"
             else
-                # handle failure
+                @errors = author.errors
+                # binding.pry
+                redirect "/signup", flash[:message] = "This username is taken. Please select another username."
             end
         end
     end

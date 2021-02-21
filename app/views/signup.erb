@@ -1,4 +1,12 @@
 <h2>Sign Up</h2>
+<% if @errors %>
+    <p>Signup was unsuccessful. Please correct the following:<p>
+    <ul>
+    <% @errors.each do |error| %>
+        <li><%= error.options[:message] %></li>
+    <% end %>
+    </ul>
+<% end %>
 <form action="/signup" method="POST">
     <label for="name">Name: </label>
     <input type="text" id="name" name="name">
