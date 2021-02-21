@@ -39,15 +39,13 @@ class ApplicationController < Sinatra::Base
         if is_logged_in?(session)
             redirect "/already-logged-in"
         elsif name.blank? || username.blank? || password.blank?
-            redirect "/signup"
+            redirect "/signup", flash[:message] = "Please fill out all requested fields to sign up."
         else
             author = Author.new(params)
             if author.save
                 session[:author_id] = author.id
                 redirect "/success-signup"
             else
-                @errors = author.errors
-                # binding.pry
                 redirect "/signup", flash[:message] = "This username is taken. Please select another username."
             end
         end
