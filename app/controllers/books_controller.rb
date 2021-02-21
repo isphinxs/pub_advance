@@ -52,7 +52,7 @@ class BooksController < ApplicationController
     get "/books/:slug/edit" do
         if is_logged_in?(session)
             @book = Book.find_by_slug(params[:slug])
-            if @book.author_id = current_author.id
+            if @book.author_id == current_author.id
                 @author = current_author
                 erb :"books/edit"
             else

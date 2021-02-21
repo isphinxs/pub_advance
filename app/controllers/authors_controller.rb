@@ -19,12 +19,38 @@ class AuthorsController < ApplicationController
         end
     end
 
-    get "/authors/:id/edit" do
-        
+    get "/authors/:slug/edit" do
+        if is_logged_in?(session)
+            @author = Author.find_by_slug(params[:slug])
+            if @author == current_author
+                erb :"authors/edit"
+            else
+                redirect "/authors" # flash, or update to a page that says you're not permitted to edit/author doesn't exist?
+            end
+        else
+            redirect "/login"
+        end
     end
 
-    patch "/authors/:id" do
-        
+    patch "/authors/:slug" do
+        if is_logged_in?(session)
+            slug = params[:slug]
+            author = Author.find_by_slug(slug)
+            name = params[:name]
+            username = params[:username]
+            if name.blank? || username.blank?
+                redirect "/authors/#{slug}/edit", flash[:message] = "All fields must be filled out."
+            else
+                if author.update(name: name, username: username)
+                    slug = author.slug
+                    redirect "/authors/#{slug}"
+                else
+                    redirect "/authors/#{slug}/edit", flash[:message] = "There was an error updating your account. Please try again."
+                end
+            end
+        else
+            redirect "/login"
+        end 
     end
 
     delete "/authors/:id" do

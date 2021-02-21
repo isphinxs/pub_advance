@@ -1,0 +1,16 @@
+<h2>Edit Your Account</h2>
+<form action="/authors/<%= @author.slug %>" method="POST">
+    <input type="hidden" id="hidden" name="_method" value="patch">
+    <label for="name">Name: </label>
+    <input type="text" id="name" name="name" value="<%= @author.name %>">
+    <label for="username">Username (Email): </label>
+    <input type="text" id="username" name="username" value="<%= @author.username %>">
+    <input type="submit" id="submit" value="Submit">
+</form>
+<form action="/authors/<%= @author.slug %>" method="GET">
+    <input type="submit" id="cancel" value="Cancel">
+</form>
+<form action="/books/<%= @author.slug %>" method="POST">
+    <input type="hidden" id="hidden" name="_method" value="DELETE">
+    <input type="submit" id="edit" value="Delete Account">
+</form>

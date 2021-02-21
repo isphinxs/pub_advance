@@ -1,6 +1,6 @@
 class Author < ActiveRecord::Base
-    validates :name, :password, :username, presence: true
-    validates :username, uniqueness: { message: "This username is taken. Select another username."}
+    validates :name, :password, :username, presence: true, :on => :create
+    validates :username, uniqueness: { message: "This username is taken. Select another username."}, :on => :create
 
     has_secure_password
     has_many :books
