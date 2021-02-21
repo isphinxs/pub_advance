@@ -66,6 +66,8 @@ class ApplicationController < Sinatra::Base
         elsif author && author.authenticate(params[:password])
             session[:author_id] = author.id
             redirect "/books", flash[:message] = "Welcome, #{author.name}!"
+        else
+            redirect "/login", flash[:message] = "Your credentials are not correct. Please try again."
         end
     end
 
