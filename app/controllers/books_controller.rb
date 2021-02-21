@@ -34,12 +34,12 @@ class BooksController < ApplicationController
             year_published = params[:year_published]
             advance = params[:advance]
             if title.blank? || year_published.blank? || advance.blank?
-                redirect "/books/new" # flash, or update to a page with the data already filled out?
+                redirect "/books/new", flash[:message] = "All fields must be filled out."
             else
                 book = Book.new(name: title, year_published: year_published, advance: advance, author_id: current_author.id)
                 if book.save
                     slug = book.slug
-                    redirect "/books/#{slug}"
+                    redirect "/books/#{slug}", flash[:message] = "You have successfully added a new book."
                 else
                     redirect "/books/new", flash[:message] = "There was an error creating a new book. Please try again."
                 end
@@ -56,7 +56,7 @@ class BooksController < ApplicationController
                 @author = current_author
                 erb :"books/edit"
             else
-                redirect "/books" # flash, or update to a page that says you're not permitted to edit/book doesn't exist?
+                redirect "/books", flash[:message] = "There was an error with that book. Please try a different book."
             end
         else
             redirect "/login"
@@ -71,13 +71,13 @@ class BooksController < ApplicationController
             year_published = params[:year_published]
             advance = params[:advance]
             if title.blank? || year_published.blank? || advance.blank?
-                redirect "/books/#{slug}/edit" # flash, or update to a page that says you've made a mistake?
+                redirect "/books/#{slug}/edit", flash[:message] = "All fields must be filled out."
             else
                 book.name = title
                 book.year_published = year_published
                 book.advance = advance
                 if book.save
-                    redirect "/books/#{slug}"
+                    redirect "/books/#{slug}", flash[:message] = "You have successfully updated your book."
                 else
                     redirect "/books/#{slug}/edit", flash[:message] = "There was an error updating your book. Please try again."
                 end
@@ -93,9 +93,9 @@ class BooksController < ApplicationController
             book = Book.find_by_slug(slug)
             if book.author_id == current_author.id
                 book.destroy
-                redirect "/books"
+                redirect "/books", flash[:message] = "You have succesfully deleted the book."
             else
-                redirect "/books/#{slug}" # flash, or update to a page that says you're not permitted to delete?
+                redirect "/books/#{slug}", flash[:message] = "There was an error deleting your book. Please try again."
             end
         else
             redirect "/login"

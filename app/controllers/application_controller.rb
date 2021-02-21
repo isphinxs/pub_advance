@@ -44,7 +44,7 @@ class ApplicationController < Sinatra::Base
             author = Author.new(params)
             if author.save
                 session[:author_id] = author.id
-                redirect "/books", flash[:message] = "You have successfully created an account."
+                redirect "/books", flash[:message] = "You have successfully created an account. Welcome, #{name}."
             else
                 redirect "/signup", flash[:message] = "This username is taken. Please select another username."
             end

@@ -43,7 +43,7 @@ class AuthorsController < ApplicationController
             else
                 if author.update(name: name, username: username)
                     slug = author.slug
-                    redirect "/authors/#{slug}"
+                    redirect "/authors/#{slug}", flash[:message] = "You have successfully updated your account."
                 else
                     redirect "/authors/#{slug}/edit", flash[:message] = "There was an error updating your account. Please try again."
                 end
@@ -63,7 +63,7 @@ class AuthorsController < ApplicationController
                 session.clear
                 redirect "/", flash[:message] = "You have successfully deleted your account"
             else
-                redirect "/books/#{slug}" # flash, or update to a page that says you're not permitted to delete?
+                redirect "/books/#{slug}", flash[:message] = "There was an error deleting the book. Please try again."
             end
         else
             redirect "/login"
