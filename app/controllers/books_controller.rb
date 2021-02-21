@@ -17,9 +17,9 @@ class BooksController < ApplicationController
         end
     end
 
-    get "/books/:id" do # update to title slug?
+    get "/books/:slug" do 
         if is_logged_in?(session)
-            @book = Book.find(params[:id])
+            @book = Book.find_by_slug(params[:slug])
             @author = @book.author
             erb :"books/show"
         else
@@ -37,8 +37,8 @@ class BooksController < ApplicationController
             else
                 book = Book.new(name: title, year_published: year_published, advance: advance, author_id: current_author.id)
                 if book.save
-                    id = book.id
-                    redirect "/books/#{id}"
+                    slug = book.slug
+                    redirect "/books/#{slug}"
                 else
                     redirect "/books/new" # flash, or update to a page with the data already filled out?
                 end
@@ -48,9 +48,9 @@ class BooksController < ApplicationController
         end
     end
 
-    get "/books/:id/edit" do
+    get "/books/:slug/edit" do
         if is_logged_in?(session)
-            @book = Book.find(params[:id])
+            @book = Book.find_by_slug(params[:slug])
             if @book.author_id = current_author.id
                 @author = current_author
                 erb :"books/edit"
@@ -62,23 +62,23 @@ class BooksController < ApplicationController
         end
     end
 
-    patch "/books/:id" do
+    patch "/books/:slug" do
         if is_logged_in?(session)
-            id = params[:id]
-            book = Book.find(id)
+            slug = params[:slug]
+            book = Book.find_by_slug(slug)
             title = params[:title]
             year_published = params[:year_published]
             advance = params[:advance]
             if title.blank? || year_published.blank? || advance.blank?
-                redirect "/books/#{id}/edit" # flash, or update to a page that says you've made a mistake?
+                redirect "/books/#{slug}/edit" # flash, or update to a page that says you've made a mistake?
             else
                 book.name = title
                 book.year_published = year_published
                 book.advance = advance
                 if book.save
-                    redirect "/books/#{id}"
+                    redirect "/books/#{slug}"
                 else
-                    redirect "/books/#{id}/edit" # flash, or update to a page that says there's been a mistake?
+                    redirect "/books/#{slug}/edit" # flash, or update to a page that says there's been a mistake?
                 end
             end
         else
@@ -88,13 +88,13 @@ class BooksController < ApplicationController
 
     delete "/books/:id" do
         if is_logged_in?(session)
-            id = params[:id]
-            book = Book.find(id)
+            slug = params[:slug]
+            book = Book.find_by_slug(slug)
             if book.author_id == current_author.id
                 book.destroy
                 redirect "/books"
             else
-                redirect "/books/#{id}" # flash, or update to a page that says you're not permitted to delete?
+                redirect "/books/#{slug}" # flash, or update to a page that says you're not permitted to delete?
             end
         else
             redirect "/login"

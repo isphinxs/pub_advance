@@ -1,6 +1,6 @@
 <h2>Edit Your Book</h2>
 <p>Author: <%= @author.name %></p>
-<form action="/books/<%= @book.id %>" method="POST">
+<form action="/books/<%= @book.slug %>" method="POST">
     <input type="hidden" id="hidden" name="_method" value="patch">
     <label for="title">Title: </label>
     <input type="text" id="title" name="title" value="<%= @book.name %>">
@@ -10,7 +10,7 @@
     <input type="text" id="advance" name="advance" value="$<%= @book.advance %>">
     <input type="submit" id="submit" value="Submit">
 </form>
-<form action="/books/<%= @book.id %>" method="POST">
+<form action="/books/<%= @book.slug %>" method="POST">
     <input type="hidden" id="hidden" name="_method" value="DELETE">
     <input type="submit" id="edit" value="Delete Book">
 </form>
