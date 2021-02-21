@@ -12,8 +12,14 @@ class BooksController < ApplicationController
         
     end
 
-    get "/books/:id" do
-        
+    get "/books/:id" do # update to title slug?
+        if is_logged_in?(session)
+            @book = Book.find(params[:id])
+            @author = @book.author
+            erb :"books/show"
+        else
+            redirect "/login"
+        end
     end
 
     post "/books" do
