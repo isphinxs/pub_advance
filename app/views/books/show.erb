@@ -6,3 +6,6 @@
 <% end %>
 <p>Published in <%= @book.year_published %></p>
 <p>Advance: $<%= @book.advance %></p>
+<form action="/books/<%= @book.id %>/edit" method="GET">
+    <input type="submit" id="edit" value="Edit">
+</form>

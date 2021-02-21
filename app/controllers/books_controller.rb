@@ -49,7 +49,18 @@ class BooksController < ApplicationController
     end
 
     get "/books/:id/edit" do
-        
+        if is_logged_in?(session)
+            id = params[:id]
+            @book = Book.find(id)
+            if @book.author_id = current_author.id
+                @author = current_author
+                erb :"books/edit"
+            else
+                redirect "/books" # flash, or update to a page that says you're not permitted to edit/book doesn't exist?
+            end
+        else
+            redirect "/login"
+        end
     end
 
     patch "/books/:id" do
