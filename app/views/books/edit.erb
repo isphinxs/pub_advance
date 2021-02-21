@@ -10,6 +10,9 @@
     <input type="text" id="advance" name="advance" value="$<%= @book.advance %>">
     <input type="submit" id="submit" value="Submit">
 </form>
+<form action="/books/<%= @book.slug %>" method="GET">
+    <input type="submit" id="cancel" value="Cancel">
+</form>
 <form action="/books/<%= @book.slug %>" method="POST">
     <input type="hidden" id="hidden" name="_method" value="DELETE">
     <input type="submit" id="edit" value="Delete Book">
