@@ -7,5 +7,9 @@
 <p>Published in <%= @book.year_published %></p>
 <p>Advance: $<%= @book.advance %></p>
 <form action="/books/<%= @book.id %>/edit" method="GET">
-    <input type="submit" id="edit" value="Edit">
+    <input type="submit" id="edit" value="Edit Book">
+</form>
+<form action="/books/<%= @book.id %>" method="POST">
+    <input type="hidden" id="hidden" name="_method" value="DELETE">
+    <input type="submit" id="edit" value="Delete Book">
 </form>

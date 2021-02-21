@@ -87,6 +87,17 @@ class BooksController < ApplicationController
     end
 
     delete "/books/:id" do
-        
+        if is_logged_in?(session)
+            id = params[:id]
+            book = Book.find(id)
+            if book.author_id == current_author.id
+                book.destroy
+                redirect "/books"
+            else
+                redirect "/books/#{id}" # flash, or update to a page that says you're not permitted to delete?
+            end
+        else
+            redirect "/login"
+        end
     end
 end
