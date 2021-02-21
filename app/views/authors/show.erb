@@ -2,7 +2,7 @@
 <% if @books.length > 0 %>
     <ul>
     <% @books.each do |book| %>
-        <li><a href="/books/<%= book.id %>"><%= book.name %></a> (<% book.year_published %>)</li>
+        <li><a href="/books/<%= book.id %>"><%= book.name %></a> (<%= book.year_published %>)</li>
     <% end %>
     </ul>
 <% else %>
