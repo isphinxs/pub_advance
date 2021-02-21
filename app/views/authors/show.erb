@@ -9,10 +9,10 @@
     <p>No books listed</p>
 <% end %>
 <% if @logged_in %>
-    <form action="/authors/<%= @author.id %>/edit" method="GET">
+    <form action="/authors/<%= @author.slug %>/edit" method="GET">
         <input type="submit" id="edit" value="Edit Account">
     </form>
-    <form action="/authors/<%= @author.id %>" method="POST">
+    <form action="/authors/<%= @author.slug %>" method="POST">
         <input type="hidden" id="hidden" name="_method" value="DELETE">
         <input type="submit" id="edit" value="Delete Account">
     </form>

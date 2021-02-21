@@ -1,7 +1,7 @@
 <h2>Authors</h2>
 <ul>
     <% @authors.each do |author| %>
-    <li><a href="/authors/<%= author.id %>"><%= author.name %></li>
+    <li><a href="/authors/<%= author.slug %>"><%= author.name %></li>
     <% end %>
 </ul>
 <form action="/books/new" method="get">
