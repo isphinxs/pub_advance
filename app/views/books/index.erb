@@ -1,0 +1,6 @@
+<h2>Books</h2>
+<ul>
+    <% @books.each do |book| %>
+    <li><a href="/books/<%= book.id %>"><%= book.name %></a> (<%= book.year_published %>) - $<%= book.advance %></li>
+    <% end %>
+</ul>

@@ -1,6 +1,11 @@
 class BooksController < ApplicationController
     get "/books" do
-        
+        if is_logged_in?(session) 
+            @books = Book.all
+            erb :"/books/index"
+        else
+            redirect "/login"
+        end
     end
 
     get "/books/new" do
@@ -23,7 +28,7 @@ class BooksController < ApplicationController
         
     end
 
-    delte "/books/:id" do
+    delete "/books/:id" do
         
     end
 end

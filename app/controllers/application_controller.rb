@@ -62,7 +62,6 @@ class ApplicationController < Sinatra::Base
         if is_logged_in?(session)
             redirect "/already-logged-in"
         elsif author && author.authenticate(params[:password])
-            binding.pry
             session[:author_id] = author.id
             redirect "/success-login"
         end
