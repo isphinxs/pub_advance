@@ -1,7 +1,7 @@
 <h2>Books</h2>
 <ul>
     <% @books.each do |book| %>
-    <li><a href="/books/<%= book.slug %>"><%= book.name %></a> (<%= book.year_published %>) - $<%= book.format_advance %></li>
+    <li><a href="/books/<%= book.slug %>"><%= book.title %></a> (<%= book.year_published %>) - $<%= book.format_advance %></li>
     <% end %>
 </ul>
 <form action="/books/new" method="get">

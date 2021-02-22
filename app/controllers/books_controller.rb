@@ -36,7 +36,7 @@ class BooksController < ApplicationController
             if title.blank? || year_published.blank? || advance.blank?
                 redirect "/books/new", flash[:message] = "All fields must be filled out."
             else
-                book = Book.new(name: title, year_published: year_published, advance: advance, author_id: current_author.id)
+                book = Book.new(title: title, year_published: year_published, advance: advance, author_id: current_author.id)
                 if book.save
                     slug = book.slug
                     redirect "/books/#{slug}", flash[:message] = "You have successfully added a new book."
@@ -73,7 +73,7 @@ class BooksController < ApplicationController
             if title.blank? || year_published.blank? || advance.blank?
                 redirect "/books/#{slug}/edit", flash[:message] = "All fields must be filled out."
             else
-                book.name = title
+                book.title = title
                 book.year_published = year_published
                 book.advance = advance
                 if book.save
