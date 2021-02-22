@@ -4,24 +4,34 @@
         <meta charset="utf-8">
         <meta name="author" content="Samantha Ostrowski">
         <meta name="description" content="A Sinatra/Ruby MVC application that tracks publication advances.">
+        <link rel="stylesheet" type="text/css" href="/stylesheets/application.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Playball&display=swap" rel="stylesheet">
     </head>
     <body>
-        <h1>PubAdvance Tracker</h1>
-        <div class="navbar">
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/authors">Authors</a></li>
-                <li><a href="/books">Books</a></li>
-            </ul>
-        </div>
-        <% if flash[:message] %>
-            <div>
-                <%= flash[:message] %>
-            <div>
-        <% end %>
-        <%= yield %>
+        <header>
+            <h1>PubAdvance Tracker</h1>
+            <div class="navbar">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/authors">Authors</a></li>
+                    <li><a href="/books">Books</a></li>
+                    <li style="float:right"><a href="">About</a></li>
+                </ul>
+            </div>
+        </header>
+
+        <main>
+            <% if flash[:message] %>
+                <div>
+                    <%= flash[:message] %>
+                <div>
+            <% end %>
+            <%= yield %>
+        </main>
+
         <footer>
-            <p>Copyright 2021 Samantha Ostrowski</p>
+            <p>&copy; 2021 Samantha Ostrowski</p>
         </footer>
     <body>
 </html>
