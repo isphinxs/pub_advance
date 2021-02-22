@@ -21,17 +21,19 @@
             </div>
         </header>
 
-        <main>
-            <% if flash[:message] %>
-                <div>
-                    <%= flash[:message] %>
-                <div>
-            <% end %>
-            <%= yield %>
-        </main>
+        <div id="page-container">
+            <div id="content-wrap">
+                <% if flash[:message] %>
+                    <div>
+                        <%= flash[:message] %>
+                    <div>
+                <% end %>
+                <%= yield %>
+            </div>
 
-        <footer>
-            <p>&copy; 2021 Samantha Ostrowski</p>
-        </footer>
+            <footer>
+                <p>&copy; 2021 Samantha Ostrowski</p>
+            </footer>
+        </div>
     <body>
 </html>
