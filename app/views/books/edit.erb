@@ -1,19 +1,28 @@
-<h2>Edit Your Book</h2>
-<p>Author: <%= @author.name %></p>
-<form action="/books/<%= @book.slug %>" method="POST">
-    <input type="hidden" id="hidden" name="_method" value="patch">
-    <label for="title">Title: </label>
-    <input type="text" id="title" name="title" value="<%= @book.title %>">
-    <label for="year_published">Year published: </label>
-    <input type="text" id="year_published" name="year_published" value="<%= @book.year_published %>">
-    <label for="advance">Advance received: $</label>
-    <input type="number" id="advance" name="advance" value="<%= @book.advance %>">
-    <input type="submit" id="submit" value="Submit">
-</form>
-<form action="/books/<%= @book.slug %>" method="GET">
-    <input type="submit" id="cancel" value="Cancel">
-</form>
-<form action="/books/<%= @book.slug %>" method="POST">
-    <input type="hidden" id="hidden" name="_method" value="DELETE">
-    <input type="submit" id="edit" value="Delete Book">
-</form>
+<h2 class="title">Edit Your Book</h2>
+<hr class="login-hr">
+<p class="subtitle">Author: <%= @author.name %></p>
+<div class=box>
+    <form action="/books/<%= @book.slug %>" method="POST">
+            <input type="hidden" id="hidden" name="_method" value="patch">
+        <div class="field">
+            <label class="label" for="title">Title: </label>
+            <input class="input" type="text" id="title" name="title" value="<%= @book.title %>">
+        </div>
+        <div class="field">
+            <label class="label" for="year_published">Year published: </label>
+            <input class="input" type="text" id="year_published" name="year_published" value="<%= @book.year_published %>">
+        </div>
+        <div class="field">
+            <label class="label" for="advance">Advance received: $</label>
+            <input class="input" type="number" id="advance" name="advance" value="<%= @book.advance %>">
+        </div>
+            <button class="button">Submit</button>
+    </form>
+    <form action="/books/<%= @book.slug %>" method="GET">
+        <button class="button">Cancel</button>
+    </form>
+    <form action="/books/<%= @book.slug %>" method="POST">
+        <input type="hidden" id="hidden" name="_method" value="DELETE">
+        <button class="button">Delete Book</button>
+    </form>
+</div>
