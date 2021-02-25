@@ -1,10 +1,32 @@
-<h2>Sign Up</h2>
-<form action="/signup" method="POST">
-    <label for="name">Name: </label>
-    <input type="text" id="name" name="name">
-    <label for="username">Username (Email): </label>
-    <input type="text" id="username" name="username">
-    <label for="password">Password: </label>
-    <input type="text" id="password" name="password">
-    <input type="submit" id="submit" value="Submit">
-</form>
+<h2 class="title">Sign Up</h2>
+<hr class="login-hr">
+<p class="subtitle">Please sign up to view authors and books.</p>
+<div class="box">
+    <form action="/signup" method="POST">
+        <div class="field">
+            <div class="label">
+                <label for="name">Name: </label>
+            </div>
+            <div class="control">
+                <input class="input" type="text" id="name" name="name">
+            </div>
+        </div>
+        <div class="field">
+            <div class="label">
+                <label for="username">Username (Email): </label>
+            </div>
+            <div class="control">
+                <input class="input" type="text" id="username" name="username">
+            </div>
+        </div>
+        <div class="field">
+            <div class="label">
+                <label for="password">Password: </label>
+            </div>
+            <div class="control">
+                <input class="input" type="text" id="password" name="password">
+            </div>
+        </div>
+        <button class="button is-rounded">Submit</button>
+    </form>
+</div>
