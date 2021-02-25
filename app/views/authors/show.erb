@@ -1,5 +1,7 @@
-<h2><%= @author.name %></h2>
+<h2 class="title"><%= @author.name %></h2>
+<hr class="login-hr">
 <% if @books.length > 0 %>
+    <p class="subtitle">Books</p>
     <ul>
     <% @books.each do |book| %>
         <li><a href="/books/<%= book.slug %>"><%= book.title %></a> (<%= book.year_published %>)</li>
@@ -8,15 +10,16 @@
 <% else %>
     <p>No books listed</p>
 <% end %>
+<hr class="login-hr">
 <% if @owns_author %>
     <form action="/books/new" method="get">
-        <input type="submit" id="new_book" value="Add a New Book">
+        <button class="button">Add a New Book</button>
     </form>
     <form action="/authors/<%= @author.slug %>/edit" method="GET">
-        <input type="submit" id="edit" value="Edit Account">
+        <button class="button">Edit Account</button>
     </form>
     <form action="/authors/<%= @author.slug %>" method="POST">
         <input type="hidden" id="hidden" name="_method" value="DELETE">
-        <input type="submit" id="edit" value="Delete Account">
+        <button class="button">Delete Account</button>
     </form>
 <% end %>
