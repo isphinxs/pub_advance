@@ -98,3 +98,9 @@ input[type="submit"]:hover {
 .footer {
     color: black;
 } */
+
+/* Content */
+
+.card {
+    padding: 5rem;
+}
