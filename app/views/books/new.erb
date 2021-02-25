@@ -1,27 +1,35 @@
-<div class="card-header">
-    <h2>Add a New Book</h2>
-</div>
-<div class="card-body">
+<h2 class="title">Add a New Book</h2>
+<hr class="login-hr">
+<p class="subtitle">Please enter all requested details for the book by the author, <%= @author.name %>.</p>
+<div class="box">
     <form class="form" action="/books" method="POST">
-        <div class="form-group">
-            <p>Author: <%= @author.name %></p>
+        <div class="field">
+            <div class="label">
+                <label for="title">Title: </label>
+            </div>
+            <div class="control">
+                <input class="input" type="text" id="title" name="title">
+            </div>
         </div>
-        <div class="form-group">
-            <label for="title">Title: </label>
-            <input type="text" id="title" name="title">
+        <div class="field">
+            <div class="label">
+                <label for="year_published">Year published: </label>
+            </div>
+            <div class="control">
+                <input class="input" type="text" id="year_published" name="year_published">
+            </div>
         </div>
-        <div class="form-group">
-            <label for="year_published">Year published: </label>
-            <input type="text" id="year_published" name="year_published">
+        <div class="field">
+            <div class="label">
+                <label for="advance">Advance received ($): </label>
+            </div>
+            <div class="control">
+                <input class="input" type="number" id="advance" name="advance">
+            </div>
         </div>
-
-        <div class="form-group">
-            <label for="advance">Advance received: $</label>
-            <input type="number" id="advance" name="advance">
-        </div>
-        <input type="submit" id="submit" value="Submit">
+        <button class="button is-rounded">Submit</button>
     </form>
     <form action="/books" method="GET">
-        <input type="submit" id="cancel" value="Cancel">
+        <button class="button is-rounded">Cancel</button>
     </form>
 </div>

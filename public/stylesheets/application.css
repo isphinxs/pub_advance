@@ -62,71 +62,11 @@ footer {
     color: darkslategray;
 }
 
-/* Content */
+/* Notification */
 
-
-
-/* header h1, h1#title {
-    font-family: "Playball", cursive;
-    padding: 1.5rem;
-} */
-
-/* footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 2.5rem;
-    text-align: center;
-} */
-
-/* footer {
-    margin: 0.5rem;
-} */
-
-/* div.navbar ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: lightslategrey;
+div.notification.is-primary {
+    font-family: "Shippori Mincho", "Garamond", serif;
 }
-
-div.navbar li {
-    float: left;
-}
-
-div.navbar li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-div.navbar li a:hover {
-    background-color: darkslategray; 
-}
-
-#page-container {
-    position: relative;
-    min-height: 100vh;
-    background-color: gainsboro;
-    text-align: center;
-}
-
-#content-wrap {
-    padding-bottom: 2.5rem;
-}
-
-#content-wrap a:hover {
-    background-color: lightslategray;
-    color: white;
-    text-decoration: none;
-}
-
-#content-wrap a:visited {
-    color: blue;
-} */
 
 /* Buttons */
 
