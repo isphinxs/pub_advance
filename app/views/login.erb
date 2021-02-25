@@ -1,8 +1,28 @@
-<h2>Log In</h2>
-<form action="/login" method="POST">
-    <label for="username">Username (Email): </label>
-    <input type="text" id="username" name="username">
-    <label for="password">Password: </label>
-    <input type="text" id="password" name="password">
-    <input type="submit" id="submit" value="Submit">
-</form>
+<h2 class="title">Log In</h2>
+<hr class="login-hr">
+<p class="subtitle">Please log in to view authors and books.</p>
+<div class="box is-">
+    <form action="/login" method="POST">
+        <div class="field is-horizontal">
+            <div class="field-label">
+                <label for="username">Username (Email): </label>
+            </div>
+            <div class="field-body">
+                <div class="control">
+                    <input class="input" type="text" id="username" name="username">
+                </div>
+            </div>
+        </div>
+        <div class="field is-horizontal">
+            <div class="field-label">
+                <label for="password">Password: </label>
+            </div>
+            <div class="field-body">
+                <div class="control">
+                    <input class="input" type="text" id="password" name="password">
+                </div>
+            </div>
+        </div>
+        <button class="button is-rounded">Submit</button>
+    </form>
+</div>

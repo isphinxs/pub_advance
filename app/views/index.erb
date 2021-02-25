@@ -1,10 +1,21 @@
-<p>Home</p>
-<form action="/signup" method="get">
-    <input type="submit" id="signup" value="Sign Up">
-</form>
-<form action="/login" method="get">
-    <input type="submit" id="login" value="Log In">
-</form>
-<form action="/logout" method="get">
-    <input type="submit" id="logout" value="Log Out">
-</form>
+<div class="columns is-vcentered">
+    <div class="column ishalf">
+        <img src="/img/pexels-janko-ferlic-590493.jpg" alt="Bookshelves lit in warm light">
+    </div>
+    <div class="column">
+        <h1 class="title">PubAdvance</h1>
+        <h2 class="subtitle">An app for tracking publication advances of all shapes and sizes.</h2>
+        <form action="/signup" method="get">
+            <button class="button is-rounded">Sign Up</button>
+        </form>
+        <% if @logged_in %>
+            <form action="/logout" method="get">
+                <button class="button is-rounded">Log Out</button>
+            </form>
+        <% else %>
+            <form action="/login" method="get">
+                <button class="button is-rounded">Log In</button>
+            </form>
+        <% end %>
+    </div>
+</div>

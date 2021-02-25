@@ -3,46 +3,87 @@
     padding: 0;
 }
 
-html, a {
-    font-family: "Shippori Mincho", serif;
-}
-
-h1, h2, h3, h4 {
-    font-family: "Garamond", serif;
-}
-
-div#content-wrap li {
-    list-style-type: square;
-    padding: 14px 16px;
-}
-
-div#content-wrap h1, h2, h3, h4 {
-    padding: 14px;
-}
-
-header, footer {
-    background-color: silver;
-    color: white;
-}
-
-header h1 {
+h1 {
     font-family: "Playball", cursive;
     padding: 1.5rem;
 }
 
+
+h2, h3, h4, p, a, .button, label {
+    font-family: "Shippori Mincho", "Garamond", serif;
+}
+
+i {
+    color: white;
+}
+
+/* Navbar */
+
+header {
+    background-color: silver;
+    color: white;
+}
+
+h1.navbar-item {
+    font-size: 2em;
+    color: white;
+    padding-right: 2rem;
+}
+
+div.navbar-start a.navbar-item {
+    font-size: 1.25em;
+}
+
+div.navbar-end a.navbar-item {
+    font-size: 1.5em;
+}
+
+.navbar-start > a:hover {
+    color: darkslategrey;
+}
+
+.navbar-menu a:hover > i {
+    color: darkslategrey;
+}
+
+/* Footer */
+
+.site {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.site-content {
+    flex: 1;
+}
+
 footer {
+    color: darkslategray;
+}
+
+/* Content */
+
+
+
+/* header h1, h1#title {
+    font-family: "Playball", cursive;
+    padding: 1.5rem;
+} */
+
+/* footer {
     position: absolute;
     bottom: 0;
     width: 100%;
     height: 2.5rem;
     text-align: center;
-}
+} */
 
-footer p {
+/* footer {
     margin: 0.5rem;
-}
+} */
 
-div.navbar ul {
+/* div.navbar ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -85,9 +126,21 @@ div.navbar li a:hover {
 
 #content-wrap a:visited {
     color: blue;
-}
+} */
 
 /* Buttons */
+
+.button {
+    background-color: silver;
+    color: white;
+    margin: 1em;
+    font-weight: bold;
+}
+
+/* .button:hover {
+    background-color: silver;
+    color: white;
+} */
 
 input[type="submit"] {
     background-color: lightslategrey;
@@ -101,3 +154,7 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: darkslategrey;
 }
+/* 
+.footer {
+    color: black;
+} */

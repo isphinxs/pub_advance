@@ -22,6 +22,7 @@ class ApplicationController < Sinatra::Base
     end
 
     get "/" do
+        @logged_in = is_logged_in?(session)
         erb :index
     end
 

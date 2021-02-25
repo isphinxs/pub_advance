@@ -1,39 +1,61 @@
-<html>
-    <head>
-        <title>PubAdvance</title>
-        <meta charset="utf-8">
-        <meta name="author" content="Samantha Ostrowski">
-        <meta name="description" content="A Sinatra/Ruby MVC application that tracks publication advances.">
-        <link rel="stylesheet" type="text/css" href="/stylesheets/application.css">
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Playball&family=Shippori+Mincho&display=swap" rel="stylesheet">
-    </head>
-    <body>
-        <header>
-            <h1>PubAdvance Tracker</h1>
-            <div class="navbar">
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/authors">Authors</a></li>
-                    <li><a href="/books">Books</a></li>
-                    <li style="float:right"><a href="">About</a></li>
-                </ul>
-            </div>
-        </header>
+<!doctype html>
+<html lang="en">
+    <div class="site-container">
+        <head>
+            <title>PubAdvance</title>
+            <meta charset="utf-8">
+            <meta name="author" content="Samantha Ostrowski">
+            <meta name="description" content="A Sinatra/Ruby MVC application that tracks publication advances.">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+            <link rel="stylesheet" type="text/css" href="/stylesheets/application.css">
+            <link rel="preconnect" href="https://fonts.gstatic.com">
+            <link href="https://fonts.googleapis.com/css2?family=Playball&family=Shippori+Mincho&display=swap" rel="stylesheet">
+            <script src="https://kit.fontawesome.com/25e9da0072.js" crossorigin="anonymous"></script>
+        </head>
+        <body class="site">
+            <div class="hero is-medium">
+                <header>
+                    <div class="hero-head">
+                        <nav class="navbar" role="navigation" aria-label="main-navigation">
+                            <div class="navbar-menu">
+                                <div class="navbar-start">
+                                    <h1 class="navbar-item">PubAdvance</h1>
+                                    <a class="navbar-item" href="/">Home</a>
+                                    <a class="navbar-item" href="/authors">Authors</a>
+                                    <a class="navbar-item" href="/books">Books</a>
+                                    <a class="navbar-item" href="">About</a>
+                                </div>
+                                <div class="navbar-end">
+                                    <a class="navbar-item" href="https://github.com/isphinxs/pub_advance"><i class="fa fa-github" aria-hidden="true"></i></a>
+                                    <a class="navbar-item" href=""><i class="fa fa-youtube-play" aria-hidden="true"></i></a>
+                                    <a class="navbar-item" href=""><i class="fa fa-medium" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </header>
 
-        <div id="page-container">
-            <div id="content-wrap">
-                <% if flash[:message] %>
-                    <div>
-                        <%= flash[:message] %>
-                    <div>
-                <% end %>
-                <%= yield %>
+                <main class="site-content">
+                    <section class="hero is-fullheight-with-navbar">
+                        <div class="hero-body">
+                            <div class="container has-text-centered">
+                                <% if flash[:message] %>
+                                    <div class="notification is-primary">
+                                        <%= flash[:message] %>
+                                    </div>
+                                <% end %>
+                                <%= yield %>
+                            </div>
+                        </div>
+                    </section>
+                </main>
+                <footer>
+                    <div class="content has-text-centered">
+                        <p>&copy; 2021 Samantha Ostrowski</p>
+                    </div>
+                </footer>
             </div>
-
-            <footer>
-                <p>&copy; 2021 Samantha Ostrowski</p>
-            </footer>
-        </div>
-    <body>
+        <body>
+    </div>
 </html>
