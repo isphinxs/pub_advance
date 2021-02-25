@@ -1,16 +1,23 @@
-<h2>Edit Your Account</h2>
-<form action="/authors/<%= @author.slug %>" method="POST">
-    <input type="hidden" id="hidden" name="_method" value="patch">
-    <label for="name">Name: </label>
-    <input type="text" id="name" name="name" value="<%= @author.name %>">
-    <label for="username">Username (Email): </label>
-    <input type="text" id="username" name="username" value="<%= @author.username %>">
-    <input type="submit" id="submit" value="Submit">
-</form>
-<form action="/authors/<%= @author.slug %>" method="GET">
-    <input type="submit" id="cancel" value="Cancel">
-</form>
-<form action="/books/<%= @author.slug %>" method="POST">
-    <input type="hidden" id="hidden" name="_method" value="DELETE">
-    <input type="submit" id="edit" value="Delete Account">
-</form>
+<h2 class="title">Edit Your Account</h2>
+<hr class="login-hr">
+<div class="box">
+    <form action="/authors/<%= @author.slug %>" method="POST">
+        <input type="hidden" id="hidden" name="_method" value="patch">
+        <div class="field">
+            <label class="label" for="name">Name: </label>
+            <input class="input" type="text" id="name" name="name" value="<%= @author.name %>">
+        </div>
+        <div class="field">
+            <label class="label" for="username">Username (Email): </label>
+            <input class="input" type="text" id="username" name="username" value="<%= @author.username %>">
+        </div>
+        <button class="button">Submit</button>
+    </form>
+    <form action="/authors/<%= @author.slug %>" method="GET">
+        <button class="button">Cancel</button>
+    </form>
+    <form action="/books/<%= @author.slug %>" method="POST">
+        <input type="hidden" id="hidden" name="_method" value="DELETE">
+        <button class="button">Delete Account</button>
+    </form>
+</div>
