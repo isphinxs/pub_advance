@@ -1,10 +1,11 @@
 <h2 class="title">All Authors</h2>
 <hr class="login-hr">
-    <ul>
-        <% @authors.each do |author| %>
-        <li><a href="/authors/<%= author.slug %>"><%= author.name %></a></li>
-        <% end %>
-    </ul>
+<ul>
+    <% @authors.each do |author| %>
+    <li><a href="/authors/<%= author.slug %>"><%= author.name %></a></li>
+    <% end %>
+</ul>
+<hr class="login-hr">
 <form action="/books/new" method="get">
     <button class="button">Add a New Book</button>
 </form>

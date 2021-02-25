@@ -5,6 +5,7 @@
     <li><a href="/books/<%= book.slug %>"><%= book.title %></a> (<%= book.year_published %>) - $<%= book.format_advance %></li>
     <% end %>
 </ul>
+<hr class="login-hr">
 <form action="/books/new" method="get">
     <button class="button">Add a New Book</button>
 </form>
