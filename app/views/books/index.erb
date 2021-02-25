@@ -2,7 +2,7 @@
 <hr class="login-hr">
 <ul>
     <% @books.each do |book| %>
-    <li class="list-item"><a href="/books/<%= book.slug %>"><%= book.title %></a> (<%= book.year_published %>) - $<%= book.format_advance %></li>
+    <li><a href="/books/<%= book.slug %>"><%= book.title %></a> (<%= book.year_published %>) - $<%= book.format_advance %></li>
     <% end %>
 </ul>
 <form action="/books/new" method="get">
