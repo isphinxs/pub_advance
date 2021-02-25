@@ -26,6 +26,10 @@ class ApplicationController < Sinatra::Base
         erb :index
     end
 
+    get "/about" do
+        erb :about
+    end
+
     get "/signup" do
         if is_logged_in?(session)
             redirect "/books", flash[:message] = "You are already logged in."

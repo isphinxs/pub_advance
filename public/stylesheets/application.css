@@ -77,28 +77,6 @@ div.notification.is-primary {
     font-weight: bold;
 }
 
-/* .button:hover {
-    background-color: silver;
-    color: white;
-} */
-
-input[type="submit"] {
-    background-color: lightslategrey;
-    color: white;
-    text-decoration: none;
-    padding: 0.5rem;
-    margin: 0.5rem;
-    border-style: none;
-}
-
-input[type="submit"]:hover {
-    background-color: darkslategrey;
-}
-/* 
-.footer {
-    color: black;
-} */
-
 /* Content */
 
 .card {
