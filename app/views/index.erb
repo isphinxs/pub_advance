@@ -6,15 +6,15 @@
         <h1 class="title">PubAdvance</h1>
         <h2 class="subtitle">An app for tracking publication advances of all shapes and sizes.</h2>
         <form action="/signup" method="get">
-            <button class="button is-rounded">Sign Up</button>
+            <button class="button">Sign Up</button>
         </form>
         <% if @logged_in %>
             <form action="/logout" method="get">
-                <button class="button is-rounded">Log Out</button>
+                <button class="button">Log Out</button>
             </form>
         <% else %>
             <form action="/login" method="get">
-                <button class="button is-rounded">Log In</button>
+                <button class="button">Log In</button>
             </form>
         <% end %>
     </div>
