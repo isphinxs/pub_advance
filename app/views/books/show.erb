@@ -1,13 +1,12 @@
 <div class="card">
 <h2 class="title py-6"><%= @book.title %></h2>
 <% if @author %>
-<p class="subtitle">By <a href="/authors/<%= @author.slug %>"><%= @author.name %></a></p>
+    <p class="subtitle">By <a href="/authors/<%= @author.slug %>"><%= @author.name %></a></p>
 <% else %>
-<p class="subtitle">Author unknown</p>
+    <p class="subtitle">Author unknown</p>
 <% end %>
 <p>Published in <%= @book.year_published %></p>
 <p class="pb-6">Advance: $<%= @book.format_advance %></p>
-</div>
 <% if @owns_book %>
     <form action="/books/<%= @book.slug %>/edit" method="GET">
         <button class="button">Edit Book</button>
@@ -16,7 +15,8 @@
         <input type="hidden" id="hidden" name="_method" value="DELETE">
         <button class="button">Delete Book</button>
     </form>
-    <form action="/books/new" method="get">
-        <button class="button">Add a New Book</button>
-    </form>
 <% end %>
+</div>
+<form action="/books/new" method="get">
+    <button class="button">Add a New Book</button>
+</form>
