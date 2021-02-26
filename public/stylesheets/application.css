@@ -8,9 +8,17 @@ h1 {
     padding: 1.5rem;
 }
 
+h1.index {
+    color: #22577a;
+    font-size: 3rem;
+}
 
 body, h2, h3, h4, p, a, .button, label, input {
     font-family: "Shippori Mincho", "Garamond", serif;
+}
+
+h2.title {
+    color: #22577a;
 }
 
 p, li {
@@ -24,7 +32,7 @@ i {
 /* Navbar */
 
 header {
-    background-color: silver;
+    background-color: #38a3a5;;
     color: white;
 }
 
@@ -36,6 +44,7 @@ h1.navbar-item {
 
 div.navbar-start a.navbar-item {
     font-size: 1.25em;
+    color: #212f45;
 }
 
 div.navbar-end a.navbar-item {
@@ -43,15 +52,15 @@ div.navbar-end a.navbar-item {
 }
 
 .navbar-item:hover {
-    color: darkslategrey;
+    color: #144552;
 }
 
 .navbar-start > a:hover {
-    color: darkslategrey;
+    color: #144552;
 }
 
 .navbar-menu a:hover > i {
-    color: darkslategrey;
+    color: #144552;
 }
 
 /* Footer */
@@ -67,7 +76,7 @@ div.navbar-end a.navbar-item {
 }
 
 footer {
-    color: darkslategray;
+    color: #144552;
 }
 
 /* Notification */
@@ -79,11 +88,15 @@ div.notification.is-primary {
 /* Buttons */
 
 .button {
-    background-color: silver;
+    background-color: #ef476f;
     color: white;
     margin: 1em;
     font-weight: bold;
     min-width: 200px;
+}
+
+.button:hover {
+    background-color: #f08080;
 }
 
 /* Content */
