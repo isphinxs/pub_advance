@@ -91,3 +91,7 @@ div.notification.is-primary {
 .card {
     padding: 5rem;
 }
+
+.hero.is-medium .hero-body {
+    padding: 3rem 1.5rem;
+}
