@@ -95,3 +95,12 @@ div.notification.is-primary {
 .hero.is-medium .hero-body {
     padding: 3rem 1.5rem;
 }
+
+.field {
+    display: flex;
+    justify-content: space-between;
+}
+
+.field input {
+    width: 70%;
+}

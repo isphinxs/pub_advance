@@ -3,7 +3,7 @@
 <p class="subtitle">Author: <%= @author.name %></p>
 <div class=box>
     <form action="/books/<%= @book.slug %>" method="POST">
-            <input type="hidden" id="hidden" name="_method" value="patch">
+        <input type="hidden" id="hidden" name="_method" value="patch">
         <div class="field">
             <label class="label" for="title">Title: </label>
             <input class="input" type="text" id="title" name="title" value="<%= @book.title %>">
@@ -16,7 +16,7 @@
             <label class="label" for="advance">Advance received: $</label>
             <input class="input" type="number" id="advance" name="advance" value="<%= @book.advance %>">
         </div>
-            <button class="button">Submit</button>
+        <button class="button">Submit</button>
     </form>
     <form action="/books/<%= @book.slug %>" method="GET">
         <button class="button">Cancel</button>
