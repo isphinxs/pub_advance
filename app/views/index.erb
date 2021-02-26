@@ -1,18 +1,18 @@
 <div class="columns is-vcentered">
-    <div class="column ishalf">
+    <div class="column is-half">
         <img src="/img/pexels-janko-ferlic-590493.jpg" alt="Bookshelves lit in warm light. Photo by Janko Ferlic from Pexels.">
     </div>
     <div class="column">
         <h1 class="title">PubAdvance</h1>
         <h2 class="subtitle">An app for tracking publication advances of all shapes and sizes.</h2>
-        <form action="/signup" method="get">
-            <button class="button">Sign Up</button>
-        </form>
         <% if @logged_in %>
             <form action="/logout" method="get">
                 <button class="button">Log Out</button>
             </form>
         <% else %>
+            <form action="/signup" method="get">
+                <button class="button">Sign Up</button>
+            </form>
             <form action="/login" method="get">
                 <button class="button">Log In</button>
             </form>

@@ -42,6 +42,10 @@ div.navbar-end a.navbar-item {
     font-size: 1.5em;
 }
 
+.navbar-item:hover {
+    color: darkslategrey;
+}
+
 .navbar-start > a:hover {
     color: darkslategrey;
 }
@@ -79,6 +83,7 @@ div.notification.is-primary {
     color: white;
     margin: 1em;
     font-weight: bold;
+    min-width: 200px;
 }
 
 /* Content */

@@ -1,11 +1,17 @@
-<h2 class="title">All Authors</h2>
-<hr class="login-hr">
+<div class="columns">
+    <div class="column is-one-third"></div>
+    <div class="column is-one-third"><h2 class="title">All Authors</h2></div>
+    <form class="column" action="/books/new" method="get">
+        <button class="button">Add a New Book</button>
+    </form>
+</div>
+    <hr class="login-hr">
 <ul>
     <% @authors.each do |author| %>
     <li><a href="/authors/<%= author.slug %>"><%= author.name %></a></li>
     <% end %>
 </ul>
 <hr class="login-hr">
-<form action="/books/new" method="get">
+<form class="column is-offset-8" action="/books/new" method="get">
     <button class="button">Add a New Book</button>
 </form>

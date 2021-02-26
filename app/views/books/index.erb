@@ -1,4 +1,10 @@
-<h2 class="title">All Books</h2>
+<div class="columns">
+    <div class="column is-one-third"></div>
+    <div class="column is-one-third"><h2 class="title">All Books</h2></div>
+    <form class="column" action="/books/new" method="get">
+        <button class="button">Add a New Book</button>
+    </form>
+</div>
 <hr class="login-hr">
 <ul>
     <% @books.each do |book| %>
