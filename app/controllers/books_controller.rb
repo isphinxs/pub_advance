@@ -87,7 +87,7 @@ class BooksController < ApplicationController
         end
     end
 
-    delete "/books/:id" do
+    delete "/books/:slug" do
         if is_logged_in?(session)
             slug = params[:slug]
             book = Book.find_by_slug(slug)
