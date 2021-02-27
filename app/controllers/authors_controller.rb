@@ -59,7 +59,7 @@ class AuthorsController < ApplicationController
             author = Author.find_by_slug(slug)
             if author == current_author
                 # what to do with author's books?
-                author.destroy
+                Author.delete(author.id)
                 session.clear
                 redirect "/", flash[:message] = "You have successfully deleted your account"
             else
