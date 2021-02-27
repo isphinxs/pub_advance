@@ -25,6 +25,7 @@
                                     <a class="navbar-item" href="/authors">Authors</a>
                                     <a class="navbar-item" href="/books">Books</a>
                                     <a class="navbar-item" href="/about">About</a>
+                                    <% if is_logged_in?(session) %><a class="navbar-item" href="/logout">Logout</a><% end %>
                                 </div>
                                 <div class="navbar-end">
                                     <a class="navbar-item" href="https://github.com/isphinxs/pub_advance"><i class="fa fa-github" aria-hidden="true"></i></a>
