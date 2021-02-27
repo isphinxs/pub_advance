@@ -99,6 +99,10 @@ div.notification.is-primary {
     background-color: #f08080;
 }
 
+.button.show-book {
+    margin-top: 2em;
+}
+
 /* Content */
 
 .card {
