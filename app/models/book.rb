@@ -9,8 +9,9 @@ class Book < ActiveRecord::Base
     end
 
     def self.find_by_slug(slug)
-        title_to_search = slug.gsub("-", " ")
-        self.find_by(title: title_to_search)
+        self.all.detect do |book|
+            book.slug == slug
+        end
     end
 
     def format_advance
