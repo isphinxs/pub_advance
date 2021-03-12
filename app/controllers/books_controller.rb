@@ -20,9 +20,14 @@ class BooksController < ApplicationController
     get "/books/:slug" do 
         if is_logged_in?(session)
             @book = Book.find_by_slug(params[:slug])
-            @author = @book.author
-            @owns_book = @author == current_author ? true : false
-            erb :"books/show"
+            if @book
+                @author = @book.author
+                @owns_book = @author == current_author ? true : false
+                erb :"books/show"
+            else
+                flash[:message] = "That book is not available."
+                redirect "/books"
+            end
         else
             redirect "/login"
         end

@@ -11,9 +11,14 @@ class AuthorsController < ApplicationController
     get "/authors/:slug" do
         if is_logged_in?(session)
             @author = Author.find_by_slug(params[:slug])
-            @owns_author = @author == current_author ? true : false
-            @books = @author.books.all
-            erb :"authors/show"
+            if @author
+                @owns_author = @author == current_author ? true : false
+                @books = @author.books.all
+                erb :"authors/show"
+            else
+                flash[:message] = "That author is not available."
+                redirect "/authors"
+            end
         else
             redirect "/login"
         end
