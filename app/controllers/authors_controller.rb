@@ -68,7 +68,7 @@ class AuthorsController < ApplicationController
                 session.clear
                 redirect "/", flash[:message] = "You have successfully deleted your account"
             else
-                redirect "/books/#{slug}", flash[:message] = "There was an error deleting the book. Please try again."
+                redirect "/books/#{slug}", flash[:message] = "There was an error deleting the account. Please try again."
             end
         else
             redirect "/login"
