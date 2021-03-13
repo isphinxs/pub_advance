@@ -45,6 +45,7 @@ class BooksController < ApplicationController
             redirect "/books/new", flash[:message] = "All fields must be filled out."
         else
             book = Book.new(title: title, year_published: year_published, advance: advance, author_id: current_author.id)
+            redirect_if_not_authorized(book)
             if book.save
                 slug = book.slug
                 redirect "/books/#{slug}", flash[:message] = "You have successfully added a new book."
@@ -57,12 +58,9 @@ class BooksController < ApplicationController
     get "/books/:slug/edit" do
         redirect_if_not_logged_in
         @book = Book.find_by_slug(params[:slug])
-        if @book.author_id == current_author.id
-            @author = current_author
-            erb :"books/edit"
-        else
-            redirect "/books", flash[:message] = "There was an error with that book. Please try a different book."
-        end
+        @author = current_author
+        redirect_if_not_authorized(@book)
+        erb :"books/edit"
     end
 
     patch "/books/:slug" do
@@ -73,10 +71,8 @@ class BooksController < ApplicationController
         year_published = params[:year_published]
         advance = params[:advance]
 
-        if book.author_id != current_author.id
-            redirect "/books", flash[:message] = "There was an error. Please try again."
-        end
-
+        redirect_if_not_authorized(book)
+        
         if title.blank? || year_published.blank? || advance.blank?
             redirect "/books/#{slug}/edit", flash[:message] = "All fields must be filled out."
         else
@@ -90,20 +86,22 @@ class BooksController < ApplicationController
             end
         end
     end
-
+    
     delete "/books/:slug" do
         redirect_if_not_logged_in
         slug = params[:slug]
         book = Book.find_by_slug(slug)
-        if book.author_id == current_author.id
-            book.destroy
-            redirect "/books", flash[:message] = "You have succesfully deleted the book."
-        else
-            redirect "/books/#{slug}", flash[:message] = "There was an error deleting your book. Please try again."
+        redirect_if_not_authorized(book)
+        book.destroy
+        redirect "/books", flash[:message] = "You have succesfully deleted the book."
+    end
+    
+    private
+    
+    def redirect_if_not_authorized(book)
+        if book.author_id != current_author.id
+            redirect "/books", flash[:message] = "There was an error. Please try again."
         end
     end
-
-    private
-
     
 end
