@@ -1,124 +1,109 @@
 class BooksController < ApplicationController
     get "/books" do
-        if is_logged_in?(session) 
-            @books = Book.all
-            erb :"/books/index"
-        else
-            redirect "/login"
-        end
+        redirect_if_not_logged_in
+        @books = Book.all
+        erb :"/books/index"
     end
-
+    
     get "/books/new" do
-        if is_logged_in?(session)
-            @author = current_author
-            erb :"books/new"
-        else
-            redirect "/login"
-        end
+        redirect_if_not_logged_in
+        @author = current_author
+        erb :"books/new"
     end
     
     get "/books/alpha" do
-        if is_logged_in?(session)
-            @books = Book.order(:title)
-            # binding.pry
-            erb :"/books/index"
-        else
-            redirect "/login"
-        end
+        redirect_if_not_logged_in
+        @books = Book.order(:title)
+        erb :"/books/index"
     end
-
+    
+    get "/books/pubyear" do
+        redirect_if_not_logged_in
+        @books = Book.order(:year_published)
+        erb :"/books/index"
+    end
+    
     get "/books/:slug" do 
-        if is_logged_in?(session)
-            @book = Book.find_by_slug(params[:slug])
-            if @book
-                @author = @book.author
-                @owns_book = @author == current_author ? true : false
-                erb :"books/show"
-            else
-                flash[:message] = "That book is not available."
-                redirect "/books"
-            end
+        redirect_if_not_logged_in
+        @book = Book.find_by_slug(params[:slug])
+        if @book
+            @author = @book.author
+            @owns_book = @author == current_author ? true : false
+            erb :"books/show"
         else
-            redirect "/login"
+            flash[:message] = "That book is not available."
+            redirect "/books"
         end
     end
 
     post "/books" do
-        if is_logged_in?(session)
-            title = params[:title]
-            year_published = params[:year_published]
-            advance = params[:advance]
-            if title.blank? || year_published.blank? || advance.blank?
-                redirect "/books/new", flash[:message] = "All fields must be filled out."
+        redirect_if_not_logged_in
+        title = params[:title]
+        year_published = params[:year_published]
+        advance = params[:advance]
+        if title.blank? || year_published.blank? || advance.blank?
+            redirect "/books/new", flash[:message] = "All fields must be filled out."
+        else
+            book = Book.new(title: title, year_published: year_published, advance: advance, author_id: current_author.id)
+            if book.save
+                slug = book.slug
+                redirect "/books/#{slug}", flash[:message] = "You have successfully added a new book."
             else
-                book = Book.new(title: title, year_published: year_published, advance: advance, author_id: current_author.id)
-                if book.save
-                    slug = book.slug
-                    redirect "/books/#{slug}", flash[:message] = "You have successfully added a new book."
-                else
-                    redirect "/books/new", flash[:message] = "There was an error creating a new book. Please try again."
-                end
+                redirect "/books/new", flash[:message] = "There was an error creating a new book. Please try again."
             end
-        else 
-            redirect "/login"
         end
     end
 
     get "/books/:slug/edit" do
-        if is_logged_in?(session)
-            @book = Book.find_by_slug(params[:slug])
-            if @book.author_id == current_author.id
-                @author = current_author
-                erb :"books/edit"
-            else
-                redirect "/books", flash[:message] = "There was an error with that book. Please try a different book."
-            end
+        redirect_if_not_logged_in
+        @book = Book.find_by_slug(params[:slug])
+        if @book.author_id == current_author.id
+            @author = current_author
+            erb :"books/edit"
         else
-            redirect "/login"
+            redirect "/books", flash[:message] = "There was an error with that book. Please try a different book."
         end
     end
 
     patch "/books/:slug" do
-        if is_logged_in?(session)
-            slug = params[:slug]
-            book = Book.find_by_slug(slug)
-            title = params[:title]
-            year_published = params[:year_published]
-            advance = params[:advance]
+        redirect_if_not_logged_in
+        slug = params[:slug]
+        book = Book.find_by_slug(slug)
+        title = params[:title]
+        year_published = params[:year_published]
+        advance = params[:advance]
 
-            if book.author_id != current_author.id
-                redirect "/books", flash[:message] = "There was an error. Please try again."
-            end
+        if book.author_id != current_author.id
+            redirect "/books", flash[:message] = "There was an error. Please try again."
+        end
 
-            if title.blank? || year_published.blank? || advance.blank?
-                redirect "/books/#{slug}/edit", flash[:message] = "All fields must be filled out."
-            else
-                book.title = title
-                book.year_published = year_published
-                book.advance = advance
-                if book.save
-                    redirect "/books/#{slug}", flash[:message] = "You have successfully updated your book."
-                else
-                    redirect "/books/#{slug}/edit", flash[:message] = "There was an error updating your book. Please try again."
-                end
-            end
+        if title.blank? || year_published.blank? || advance.blank?
+            redirect "/books/#{slug}/edit", flash[:message] = "All fields must be filled out."
         else
-            redirect "/login"
+            book.title = title
+            book.year_published = year_published
+            book.advance = advance
+            if book.save
+                redirect "/books/#{slug}", flash[:message] = "You have successfully updated your book."
+            else
+                redirect "/books/#{slug}/edit", flash[:message] = "There was an error updating your book. Please try again."
+            end
         end
     end
 
     delete "/books/:slug" do
-        if is_logged_in?(session)
-            slug = params[:slug]
-            book = Book.find_by_slug(slug)
-            if book.author_id == current_author.id
-                book.destroy
-                redirect "/books", flash[:message] = "You have succesfully deleted the book."
-            else
-                redirect "/books/#{slug}", flash[:message] = "There was an error deleting your book. Please try again."
-            end
+        redirect_if_not_logged_in
+        slug = params[:slug]
+        book = Book.find_by_slug(slug)
+        if book.author_id == current_author.id
+            book.destroy
+            redirect "/books", flash[:message] = "You have succesfully deleted the book."
         else
-            redirect "/login"
+            redirect "/books/#{slug}", flash[:message] = "There was an error deleting your book. Please try again."
         end
     end
+
+    private
+
+    
 end

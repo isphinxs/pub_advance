@@ -10,6 +10,12 @@ module Helpers
     def current_author
         Author.find(session[:author_id])
     end
+
+    def redirect_if_not_logged_in
+        if !is_logged_in?(session)
+            redirect "/login"
+        end
+    end
 end
 
 class ApplicationController < Sinatra::Base
