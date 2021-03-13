@@ -44,7 +44,7 @@ class BooksController < ApplicationController
         if title.blank? || year_published.blank? || advance.blank?
             redirect "/books/new", flash[:message] = "All fields must be filled out."
         else
-            book = Book.new(title: title, year_published: year_published, advance: advance, author_id: current_author.id)
+            book = Book.new(title: title, year_published: year_published, advance: advance, author_id: params[:author_id])
             redirect_if_not_authorized(book)
             if book.save
                 slug = book.slug

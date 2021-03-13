@@ -3,6 +3,7 @@
 <p class="subtitle">Please enter all requested details for the book by the author, <%= @author.name %>.</p>
 <div class="box">
     <form class="form" action="/books" method="POST">
+        <input type="hidden" name="author_id" value="<%= @author.id %>">
         <div class="field">
             <label for="title">Title: </label>
             <input class="input" type="text" id="title" name="title">
