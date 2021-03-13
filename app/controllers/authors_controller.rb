@@ -30,7 +30,7 @@ class AuthorsController < ApplicationController
             if @author == current_author
                 erb :"authors/edit"
             else
-                redirect "/authors" # flash, or update to a page that says you're not permitted to edit/author doesn't exist?
+                redirect "/authors", flash[:message] = "There was an error. Please try again." # flash, or update to a page that says you're not permitted to edit/author doesn't exist?
             end
         else
             redirect "/login"
@@ -43,6 +43,11 @@ class AuthorsController < ApplicationController
             author = Author.find_by_slug(slug)
             name = params[:name]
             username = params[:username]
+
+            if author != current_author
+                redirect "/authors", flash[:message] = "There was an error. Please try again."
+            end
+
             if name.blank? || username.blank?
                 redirect "/authors/#{slug}/edit", flash[:message] = "All fields must be filled out."
             else

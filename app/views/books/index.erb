@@ -1,9 +1,14 @@
 <div class="columns is-vcentered">
     <div class="column is-one-third"></div>
     <div class="column is-one-third"><h2 class="title">All Books</h2></div>
-    <form class="column" action="/books/new" method="get">
-        <button class="button">Add a New Book</button>
-    </form>
+    <div class="column">
+        <form action="/books/new" method="get">
+            <button class="button">Add a New Book</button>
+        </form>
+        <form action="/books/alpha" method="get">
+            <button class="button">Sort by Title</button>
+        </form>
+    </div>
 </div>
 <hr class="login-hr">
 <ul>

@@ -16,6 +16,16 @@ class BooksController < ApplicationController
             redirect "/login"
         end
     end
+    
+    get "/books/alpha" do
+        if is_logged_in?(session)
+            @books = Book.order(:title)
+            # binding.pry
+            erb :"/books/index"
+        else
+            redirect "/login"
+        end
+    end
 
     get "/books/:slug" do 
         if is_logged_in?(session)
@@ -75,6 +85,11 @@ class BooksController < ApplicationController
             title = params[:title]
             year_published = params[:year_published]
             advance = params[:advance]
+
+            if book.author_id != current_author.id
+                redirect "/books", flash[:message] = "There was an error. Please try again."
+            end
+
             if title.blank? || year_published.blank? || advance.blank?
                 redirect "/books/#{slug}/edit", flash[:message] = "All fields must be filled out."
             else
