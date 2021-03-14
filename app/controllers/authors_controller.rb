@@ -32,7 +32,11 @@ class AuthorsController < ApplicationController
         name = params[:name]
         username = params[:username]
 
-        redirect_if_not_authorized(author)
+        author_to_check = Author.find_by(name: name)
+        redirect_if_not_authorized(author_to_check)
+        
+        author_to_check = Author.find_by(username: username)
+        redirect_if_not_authorized(author_to_check)
 
         if name.blank? || username.blank?
             redirect "/authors/#{slug}/edit", flash[:message] = "All fields must be filled out."
