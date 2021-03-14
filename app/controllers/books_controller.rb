@@ -41,6 +41,11 @@ class BooksController < ApplicationController
         title = params[:title]
         year_published = params[:year_published]
         advance = params[:advance]
+
+        # Check that the title doesn't already exist / user isn't editing a book that doesn't belong to them
+        book_to_check = Book.find_by(title: title)
+        redirect_if_not_authorized(book_to_check)
+        
         if title.blank? || year_published.blank? || advance.blank?
             redirect "/books/new", flash[:message] = "All fields must be filled out."
         else
@@ -71,12 +76,15 @@ class BooksController < ApplicationController
         year_published = params[:year_published]
         advance = params[:advance]
 
-        redirect_if_not_authorized(book)
-        
+        # Check that the title doesn't already exist / user isn't editing a book that doesn't belong to them
+        book_to_check = Book.find_by(title: title)
+        redirect_if_not_authorized(book_to_check)
+
         if title.blank? || year_published.blank? || advance.blank?
             redirect "/books/#{slug}/edit", flash[:message] = "All fields must be filled out."
         else
             book.title = title
+
             book.year_published = year_published
             book.advance = advance
             if book.save
